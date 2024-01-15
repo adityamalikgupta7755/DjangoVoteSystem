@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'dasboardApp/dasboardnavbar.html' %}
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-10 align-self-center">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center">Select Batch</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email Template</th>
+                <th scope="col">Email Template Subject</th>
+                <th scope="col">Email Template Body</th>
+                <th scope="col">Batch Status</th>
+                <th scope="col">Delete Batch</th>
+                <th scope="col">Send Invite</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for batch in Batchobj %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{batch.Batch}}</td>
+                <td>{{batch.Batch_Template}}</td>
+                <td>{{batch.Batch_Template.Subject}}</td>
+                <td>{{batch.Batch_Template.body}}</td>
+                <td>{{batch.Batch_Send}}</td>
+                <td><a href="{% url 'dashboardDelBatach' batch.id  %}" class="btn btn-danger">Del</a> </td>
+                <td><a href="{% url 'dashboardInvitation' batch.id  %}" class="btn btn-primary">Send Invitation</a> </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <h1 class="text-center">Invite</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Batch</th>
+                <th scope="col">link</th>
+                <th scope="col">Active</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+
+           
+            {% for invite in SendInviteobj %}
+
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{invite.SendInvite_Id}}</td>
+              <td>{{invite.SendInvite_user}}</td>
+              <td>{{invite.SendInvite_Batch}}</td>
+              <td>{{invite.SendInvite_link}}</td>
+              <td>{{invite.SendInvite_Active}}</td>
+            </tr>
+          </tbody>
+            {% endfor %}
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+

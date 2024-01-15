@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-4 align-self-center" >
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Edit Profile</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            {{form.Pofile_Name}}
+                        </div>
+
+                        <!-- <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            {{form.Pofile_Email}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Gender" class="form-label">Gender</label>
+                            {{form.Pofile_Gender}}
+                        </div> -->
+
+                        <div class="mb-3">
+                            <label for="Discription" class="form-label">Discription</label>
+                            {{form.Pofile_dsc}}
+                        </div>
+                    
+                        
+                        <div class="mb-3">
+                            <label for="Pic" class="form-label">Pic</label>
+                            {{form2.Pofile_Pic}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="Take" class="form-label">Take Part</label>
+                            {{form.Pofile_competitor}}
+                        </div>
+                        <input type="submit" class="btn btn-success" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

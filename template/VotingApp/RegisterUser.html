@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block CSS %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        /* background-image: url("{% static '15-aug-happy-independence-day-600w-679810198.webp' %}"); */
+        background-image: url("{% static 'bg1.webp' %}");
+        background-size: cover;
+        z-index: -1;
+        overflow-x: hidden;
+    }
+
+    .card-img {
+        align-self: center;
+        /* border: 1px solid #000; */
+        width: 20rem;
+    }
+
+    .sub_div {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-8 align-self-center" >
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center">Welcome To GSS</h1>
+                <h3 class="text-center">on 15<sup>th</sup> AUG 2023 </h3>
+                <h5 class="text-center">Best Male & Female Dress Competition</h5>
+                <h6 class="text-center">Please Fill form</h6>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Name</label>
+                        {{form.Pofile_Name}}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Email</label>
+                        {{form.Pofile_Email}}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Gender</label>
+                        {{form.Pofile_Gender}}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Discription</label>
+                        {{form.Pofile_dsc}}
+                    </div>
+                
+                    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Pic</label>
+                        {{form.Pofile_Pic}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Take Part</label>
+                        {{form.Pofile_competitor}}
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Add">
+                    <a href="{% url 'GSShome' %}" class="btn btn-primary sub_div">Go TO Home</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

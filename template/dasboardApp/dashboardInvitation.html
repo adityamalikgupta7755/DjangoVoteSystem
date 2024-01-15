@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'dasboardApp/dasboardnavbar.html' %}
+
+
+
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-10 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Progress {{Batchobj}}</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Batch</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Status</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for invite in SendInviteobj %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{invite.SendInvite_user}}</td>
+                                <td>{{invite.SendInvite_Batch}}</td>
+                                <td>{{invite.SendInvite_link}}</td>
+                                <td>{{invite.SendInvite_Active}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

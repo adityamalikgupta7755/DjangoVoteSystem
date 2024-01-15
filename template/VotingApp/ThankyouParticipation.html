@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block CSS %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        /* background-image: url("{% static '15-aug-happy-independence-day-600w-679810198.webp' %}"); */
+        background-image: url("{% static 'bg1.webp' %}");
+        background-size: cover;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .card-img {
+        align-self: center;
+        /* border: 1px solid #000; */
+        width: 20rem;
+    }
+
+    .sub_div {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-6  align-self-center">
+        <h1 class="text-center">Thankyou For Particpation</h1>
+        <h2 class="text-center">Your Vote are Save</h2>
+        <h3 class="text-center">on 15<sup>th</sup> AUG 2023 </h3>
+        <h5 class="text-center">Best Male & Female Dress Competition</h5>
+        <h5 class="text-center">Soon Result are Declear Please Wait</h5>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block CSS %}
+
+<style>
+  .container {
+    width: 100%;
+    height: 100vh;
+    background-image: url("{% static '15-aug-happy-independence-day-600w-679810198.webp' %}");
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .card-img {
+    align-self: center;
+    /* border: 1px solid #000; */
+    width: 15rem;
+  }
+
+  .voteradiofinal {
+    display: none;
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col">
+    <h1 class="text-center">Female</h1>
+  </div>
+</div>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for user in userobj %}
+    {% if user.Pofile_competitor %}
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{user.Pofile_Pic.url}}" class="card-img-top card-img" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{user.Pofile_Name}}</h5>
+          <h6 class="card-title">{{user.Pofile_Email}}</h6>
+          <p class="card-text">{{user.Pofile_dsc}}</p>
+        </div>
+        <div class="card-footer ">
+          <div class="d-grid gap-2">
+            <div class="btn btn-primary align-self-center voteradio">
+              <span><input type="radio" class="btn btn-success voteradiofinal" name="radoption"
+                  value="{{user.Pofile_Id}}"></span>
+              Vote for me
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+  </div>
+  <input type="submit" class="btn btn-success" value="Vote">
+</form>
+
+
+<script>
+  let voteradio = document.querySelectorAll('.voteradio')
+  for (let i = 0; i < voteradio.length; i++) {
+    voteradio[i].addEventListener('click', () => {
+      let radioButton = voteradio[i].querySelector('.voteradiofinal')
+      radioButton.click()
+      setColorPrimary();
+      voteradio[i].classList.remove('btn-primary');
+      voteradio[i].classList.add('btn-success');
+    })
+  }
+
+  function setColorPrimary() {
+    for (let i = 0; i < voteradio.length; i++) {
+      voteradio[i].classList.remove('btn-success');
+      voteradio[i].classList.add('btn-primary');
+    }
+  }
+</script>
+{% endblock %}

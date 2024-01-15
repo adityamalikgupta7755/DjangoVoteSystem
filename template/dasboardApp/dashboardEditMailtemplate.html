@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'dasboardApp/dasboardnavbar.html' %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-6 align-self-center" >
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Add Email Template</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Template Name</label>
+                            {{form.Name}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Subject</label>
+                            {{form.Subject}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Body</label>
+                            {{form.body}}
+                        </div>
+                        <input type="submit" class="btn btn-success" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

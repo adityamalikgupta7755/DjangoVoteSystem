@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block jslink %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+{% endblock %}
+
+{% block CSS %}
+
+{% endblock %}
+{% block content %}
+{% include 'dasboardApp/dasboardnavbar.html' %}
+<div class="mt-2">
+    <div class="row justify-content-center">
+        <div class="col-10 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Male</h1>
+                    <canvas id="myChartMale" style="width:100%;max-width:700px"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-10 mt-2 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Female</h1>
+                    <canvas id="myChartFemale" style="width:100%;max-width:700px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{MaleUserlist|safe}}
+{{MaleUserPoint|safe}}
+{{FemaleUserPoint|safe}}
+{{FemaleUserlist|safe}}
+<script>
+    var FxValues = {{FemaleUserlist|safe}};
+    var FyValues = {{FemaleUserPoint|safe}};
+    var MxValues = {{MaleUserlist|safe}};
+    var MyValues = {{MaleUserPoint|safe}};
+    var barColors = ['#FF0000', '#000000', '#686A6C', '#FFFF00', '#008000',
+        '#FFCCCB', '#FFA500', '#808080', '#FFD700', '#ADD8E6', '#00FFFF', '#00008B', '#0000FF', '#454545',
+        '#800080', '#C0C0C0', '#966F33', '#D3D3D3', '#00FF00', '#FFCE44', '#FF00FF', '#F8F0E3', '#93917C',
+        '#FFC0CB', '#9D00FF', '#E1D9D1', '#A9A9A9', '#006400', '#FFFFE0', '#BCC6CC', '#D4AF37', '#800000',
+        '#A52A2A', '#7FFFD4', '#87CEEB', '#728FCE', '#FFFF33', '#90EE90', '#FFFFF7', '#2B65EC', '#FED8B1',
+        '#98AFC7', '#8B8000', '#FAAFBA', '#FFB6C1', '#FF6700', '#3A3B3C', '#FDD017', '#FFFDD0', '#AA6C39',
+        '#F62817', '#666362', '#1589FF', '#8B0000', '#E5E4E2', '#0C090A', '#808000', '#ECC5C0', '#F8F6F0',
+        '#357EC7', '#368BC1', '#F5F5DC', '#000080', '#00BFFF', '#FEFCFF', '#EB5406', '#625D5D', '#D16587',
+        '#F70D1A', '#FFDF00', '#B87333', '#151B54', '#E799A3', '#4863A0', '#008080', '#DADBDD', '#C2DFFF',
+        '#95B9C7', '#F67280', '#F535AA', '#E67451', '#1E90FF', '#E75480', '#16F529', '#34282C', '#F5F5F5',
+        '#8E7618', '#EAC117', '#4B0150', '#82CAFF', '#FFDB58', '#5EFB6E', '#E41B17', '#6A0DAD', '#1569C7',
+        '#FBE7A1', '#6F4E37', '#CD7F32'];
+
+    new Chart("myChartMale", {
+        type: "bar",
+        data: {
+            labels: MxValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: MyValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Male Chart"
+            }
+        }
+    });
+
+    new Chart("myChartFemale", {
+        type: "bar",
+        data: {
+            labels: FxValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: FyValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Female Chart"
+            }
+        }
+    });
+</script>
+
+{% endblock %}

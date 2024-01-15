@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'dasboardApp/dasboardnavbar.html' %}
+
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-8 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Create Invite</h1>
+                    <form action="" method="post">
+                        {% csrf_token %}
+
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">UUID</th>
+                                    <th scope="col">Name</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in userobj %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td><input type="checkbox" id="{{user.Pofile_Id}}" name="user"
+                                            value="{{user.Pofile_Id}}"></td>
+                                    <td>{{user.Pofile_Id}}</td>
+                                    <td>{{user.Pofile_Name}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+
+
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Batch Name</label>
+                            {{form.Batch}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Email Template</label>
+                            {{form.Batch_Template}}
+                        </div>
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+</script>
+
+{% endblock %}

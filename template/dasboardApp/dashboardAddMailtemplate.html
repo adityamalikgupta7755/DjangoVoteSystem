@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'dasboardApp/dasboardnavbar.html' %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-6" >
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Add Email Template</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Template Name</label>
+                            {{form.Name}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Subject</label>
+                            {{form.Subject}}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Body</label>
+                            {{form.body}}
+                        </div>
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-6" >
+            <div class="card">
+                <div class="card-body">
+                    <h1 Email class="text-center">Email Template</h1>
+                    
+                    
+                    
+                    
+
+
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Body</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {%  for email in mailtempalte %}
+                          <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{email.Name}}</td>
+                            <td>{{email.Subject}}</td>
+                            <td>{{email.body}}</td>
+                            <td><a href="{% url 'dashboardEditMailtemplate' email.id %}" class="btn btn-success">Edit</a>
+                                </td>
+
+                          </tr>
+
+                          {% endfor %}
+                        </tbody>
+                      </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
